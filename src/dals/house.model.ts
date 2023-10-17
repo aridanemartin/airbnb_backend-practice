@@ -1,5 +1,11 @@
 import { ObjectId } from "mongodb";
 
+export interface Review {
+  _id: ObjectId;
+  date: Date;
+  reviewerName: string;
+  comments: string;
+}
 export interface House {
   _id: ObjectId;
   listing_url: string;

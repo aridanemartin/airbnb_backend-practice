@@ -1,8 +1,9 @@
-import { House } from "../../house.model.js";
+import { HouseAPIModel } from "#pods/house/house.api-model.js";
+import { House, Review } from "../../house.model.js";
 
 export interface HouseRepository {
-  findAll(): Promise<House[]>;
-  findById(id: string): Promise<House | null>;
+  findAll: (page?: number, pageSize?: number) => Promise<House[]>;
+  findById(id: string): Promise<House>;
   saveHouse(house: House): Promise<House>;
-  delete(id: string): Promise<void>;
+  addReview(id: string, review: Review): Promise<House>;
 }

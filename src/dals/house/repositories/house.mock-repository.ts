@@ -1,5 +1,5 @@
 import { HouseRepository } from "./house.repository.js";
-import { House } from "../../house.model.js";
+import { House, Review } from "../../house.model.js";
 import { db } from "../../mock-data.js";
 import { ObjectId } from "mongodb";
 
@@ -21,14 +21,22 @@ export const houseMockRepository: HouseRepository = {
   findAll: async (): Promise<House[]> => db.houses,
   findById: async (id: string): Promise<House | null> =>
     db.houses.find((house) => {
-      console.log("====>", house._id.toHexString(), id);
       return house._id.toHexString() === id;
     }),
   saveHouse: async (house: House) =>
     db.houses.some((h) => h._id.toHexString() === house._id.toHexString())
       ? updateHouse(house)
       : insertHouse(house),
-  delete: async (id) => {
-    db.houses = db.houses.filter((house) => house._id.toHexString() !== id);
+  addReview: async (id: string, review: Review) => {
+    const house = db.houses.find((h) => h._id.toHexString() === id);
+    if (house) {
+      house.reviews.push({
+        _id: new ObjectId(),
+        date: new Date(),
+        reviewer_name: review.reviewerName,
+        comments: review.comments,
+      });
+    }
+    return house;
   },
 };
