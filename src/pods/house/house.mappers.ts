@@ -28,7 +28,7 @@ export const mapHouseListFromModelToApi = (
 export const mapHouseFromModelToApi = (
   house: model.House
 ): apiModel.HouseAPIModel => ({
-  id: house._id.toHexString(),
+  id: typeof house._id === "object" ? house._id.toHexString() : "",
   name: house.name,
   description: house.description,
   images: house.images,

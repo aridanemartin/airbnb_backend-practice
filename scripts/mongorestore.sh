@@ -1,0 +1,1 @@
+mongorestore --db airbnb /data/db/seed-data

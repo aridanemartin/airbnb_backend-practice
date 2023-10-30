@@ -5,8 +5,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --transpileOnly --esm src/index.ts",
+    "start:dev": "nodemon --transpileOnly --esm src/index.ts",
+    "start:local-db": "docker-compose up -d --build",
+    "start": "run-p -l start:dev start:local-db",
     "test": "jest -c ./config/test/jest.js",
+    "type-check": "tsc --noEmit --preserveWatchOutput",
+    "type-check:watch": "npm run type-check -- --watch",
     "test:watch": "npm run test -- --watchAll -i"
   },
   "imports": {
@@ -30,6 +34,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "npm-run-all": "^4.1.5"
   }
 }
