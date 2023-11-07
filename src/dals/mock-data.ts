@@ -10,7 +10,7 @@ export const db: DB = {
     {
       _id: new ObjectId(),
       listing_url: "https://www.airbnb.com/rooms/10006546",
-      name: "Ribeira Charming Duplex",
+      name: "Ribeira Mock Charming Duplex",
       summary:
         "Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube) - UNESCO World Heritage Site. Centenary building fully rehabilitated, without losing their original character.",
       space:

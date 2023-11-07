@@ -8,6 +8,7 @@
     "start:dev": "nodemon --transpileOnly --esm src/index.ts",
     "start:local-db": "docker-compose up -d --build",
     "start": "run-p -l start:dev start:local-db",
+    "start:console-runners": "nodemon --no-stdin --transpileOnly --esm src/console-runners/index.ts",
     "test": "jest -c ./config/test/jest.js",
     "type-check": "tsc --noEmit --preserveWatchOutput",
     "type-check:watch": "npm run type-check -- --watch",
@@ -29,12 +30,13 @@
     "@types/jest": "^29.5.5",
     "nodemon": "^3.0.1",
     "ts-jest": "^29.1.1",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "dotenv": "^16.3.1"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "inquirer": "^9.2.11",
     "npm-run-all": "^4.1.5"
   }
 }

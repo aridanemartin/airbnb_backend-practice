@@ -18,9 +18,14 @@ const updateHouse = async (house: House): Promise<House> => {
 };
 
 export const houseMockRepository: HouseRepository = {
-  findAll: async (): Promise<House[]> => db.houses,
+  findAll: async (page, pageSize): Promise<House[]> => {
+    const start = page * pageSize;
+    const end = start + pageSize;
+    return db.houses.slice(start, end);
+  },
   findById: async (id: string): Promise<House | null> =>
     db.houses.find((house) => {
+      console.log("findById");
       return house._id.toHexString() === id;
     }),
   saveHouse: async (house: House) =>

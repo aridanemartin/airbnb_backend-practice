@@ -16,6 +16,7 @@ export const housedbRepository: HouseRepository = {
     return result;
   },
   findById: async (id: string) => {
+    console.log("findById in db repo");
     const result = await db
       ?.collection<House>("listingsAndReviews")
       .findOne({ _id: new ObjectId(id) });
